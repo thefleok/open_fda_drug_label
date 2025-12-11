@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "open_fda_drug_label"
+version = "0.1.0"
+description = "Package leveraging openFDA drug/label API to access drug information and store in usable python data objects"
+authors = ["Leo Jergovic"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
