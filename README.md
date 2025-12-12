@@ -8,14 +8,75 @@ The label subset of the openFDA API Drug call allows users to search for drugs a
 
 ## Installation
 
+Installing the pacakage can be easily achieved through "pip install" or whatever command line is used in the user's respective environment for adding dependencies. We demonstrate *pip install* and *poetry add* commands below:
+
 ```bash
 $ pip install open_fda_drug_label
+$ poetry add open_fda_drug_label
+```
+
+To import the package and all necessary functions, simply execute the following:
+
+```bash
+import open_fda_drug_label
+from open_fda_drug_label import Drug, Shelf, Drug_Label_Client, make_drugs
 ```
 
 ## Usage
 
-- TODO
+All usage should begin by importing a user's API key. We heavily suggest using a dotenv approach with load_dotenv() for ease of implementation and effective use of testing. Users can store their api_key in a dot_env file.
 
+```bash
+from dotenv import load_dotenv
+load_dotenv()
+API_KEY = os.getenv("FDA_API_KEY")
+```
+
+Users can interact with the openFDA API through the Drug_Label_Client object:
+
+```bash
+client = Drug_Label_Client(API_KEY)
+```
+Setting up searches is easy through the client API. *generic_search* builds the optimal string format of searches, and inputting these string formats into the search_request function complete the query and returns a raw json format:
+
+```bash
+advil_search = client.generic_search("brand_name", "Advil")
+advil_result = client.search_request([advil_search])
+```
+
+Returned in the form of listed dictionaries/nests, subsets of advil_search can be used to initiate a *Drug* object:
+
+```bash
+advil_drug = Drug(advil_result["meta"], advil_result["results"][0])
+```
+
+The drug object makes accessing information buried in complex organization easy with basic calls:
+```bash
+advil_drug.get_name() # returns full name of advil drug
+advil_drug.get_date() # returns last update date of advil drug
+advil_drug.get_parameter("pregnancy") # returns for any string parameter in the dict info on advil, in this case, pregnancy warnings
+```
+
+The alternative to all of the above is to use the following make_drugs command:
+```bash
+make_drugs(API_KEY, ["brand_name"],["Advil"])
+```
+
+Drugs can be placed onto a shelf (when non-redundant with existing shelf items) and stored for pharmacies, users' personal cabinets, and any other collection environments:
+```bash
+my_shelf = Shelf()
+my_shelf.add_drug(advil_drug)
+```
+
+## Dependencies
+python = "^3.12"
+dotenv = "^0.9.9"
+requests = "^2.32.5"
+"myst-nb (>=1.3.0,<2.0.0)",
+"sphinx-autoapi (>=3.6.1,<4.0.0)",
+"sphinx-rtd-theme (>=3.0.2,<4.0.0)",
+"pytest (>=9.0.2,<10.0.0)",
+"pytest-cov (>=7.0.0,<8.0.0)"
 ## Contributing
 
 Interested in contributing? Check out the contributing guidelines. Please note that this project is released with a Code of Conduct. By contributing to this project, you agree to abide by its terms.
@@ -24,6 +85,11 @@ Interested in contributing? Check out the contributing guidelines. Please note t
 
 `open_fda_drug_label` was created by Leo Jergovic. It is licensed under the terms of the MIT license.
 
+## Contact
+Please contact original developer Leo Jergovic on linkedin by searching his name, or on github @thefleok.
+
 ## Credits
+
+We indebt any relative functionality and usefulness of this package to Columbia University QMSS Professor Thomas Brambor. His excellent course materials, timely communication, and engaging teaching enabled the execution of this project.
 
 `open_fda_drug_label` was created with [`cookiecutter`](https://cookiecutter.readthedocs.io/en/latest/) and the `py-pkgs-cookiecutter` [template](https://github.com/py-pkgs/py-pkgs-cookiecutter).
