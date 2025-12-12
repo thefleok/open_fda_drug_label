@@ -70,12 +70,19 @@ my_shelf.add_drug(advil_drug)
 
 ## Dependencies
 python = "^3.12"
+
 dotenv = "^0.9.9"
+
 requests = "^2.32.5"
-"myst-nb (>=1.3.0,<2.0.0)",
-"sphinx-autoapi (>=3.6.1,<4.0.0)",
-"sphinx-rtd-theme (>=3.0.2,<4.0.0)",
-"pytest (>=9.0.2,<10.0.0)",
+
+"myst-nb (>=1.3.0,<2.0.0)",=
+
+"sphinx-autoapi (>=3.6.1,<4.0.0)"
+
+"sphinx-rtd-theme (>=3.0.2,<4.0.0)"
+
+"pytest (>=9.0.2,<10.0.0)"
+
 "pytest-cov (>=7.0.0,<8.0.0)"
 ## Contributing
 
