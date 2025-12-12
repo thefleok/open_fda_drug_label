@@ -5,9 +5,9 @@ description = "Package leveraging openFDA drug/label API to access drug informat
 authors = ["Leo Jergovic"]
 license = "MIT"
 readme = "README.md"
-documentation = 'https://open-fda-drug-label.readthedocs.io/en/latest/'
-homepage = 'https://github.com/thefleok/open_fda_drug_label'
-repository = 'https://github.com/thefleok/open_fda_drug_label'
+documentation = "https://open-fda-drug-label.readthedocs.io/en/latest/"
+homepage = "https://github.com/thefleok/open_fda_drug_label"
+repository = "https://github.com/thefleok/open_fda_drug_label"
 
 [tool.poetry.dependencies]
 python = "^3.12"
