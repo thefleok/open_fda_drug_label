@@ -41,6 +41,8 @@ class Shelf:
             >>> my_shelf = Shelf(capacity=20) # initializes shelf object
         """
         # check capacity values
+        if isinstance(capacity, bool):
+            raise TypeError("capacity must be an integer, not a boolean")
         if not isinstance(capacity, int):
             raise TypeError("capacity must be an integer")
         if capacity < 1:

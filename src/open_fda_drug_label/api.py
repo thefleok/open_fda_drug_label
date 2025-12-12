@@ -81,6 +81,8 @@ class Drug_Label_Client:
                 raise TypeError(f"The items in search_items must be generic_search generated strings")
 
         # Ensure correct limit type:
+        if isinstance(limit, bool):  
+            raise TypeError("The limit parameter must be an integer, not a boolean.")
         if not isinstance(limit, int):
             raise TypeError("The limit parameter must be an integer.")
         if limit < 1:
